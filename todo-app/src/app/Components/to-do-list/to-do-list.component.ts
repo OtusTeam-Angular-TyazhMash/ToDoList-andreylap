@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-
-export interface Task {
-  id: number;
-  task: string | undefined;
-}
+import { TASK, Task } from 'src/app/tasks/tasks';
 
 @Component({
   selector: 'app-to-do-list',
@@ -12,15 +8,19 @@ export interface Task {
 })
 export class ToDoListComponent {
   title = 'Todo List';
+  text: string = '';
+  list = TASK;
 
-  public list: Task[] = [
-    { id: 1, task: 'Buy a new gaming laptop' },
-    { id: 2, task: 'Complete previous task' },
-    { id: 3, task: 'Create some angular app' },
-  ];
-  public text: string | undefined;
+  del(id: number) {
+    this.list.splice(
+      this.list.findIndex((i) => i.id == id),
+      1
+    );
+  }
 
-  del(id: number) {}
-
-  add() {}
+  add() {
+    let max_id = Math.max(0, ...this.list.map((i) => i.id));
+    this.list.push({ id: max_id + 1, task: this.text });
+    this.text = '';
+  }
 }

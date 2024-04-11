@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+$widthlist: 20%;
 h1, ul, li{
     margin: 0;
     padding: 0;
     list-style: none;
 }
-$widthlist: 20%;
+.btn{
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color:  rgb(55, 175, 73);
+    color:white;
+    font-size: 18px;;
+}
+.btn:hover{
+    opacity: 0.5;
+}
+.btn:disabled{
+    opacity: 0.5;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
