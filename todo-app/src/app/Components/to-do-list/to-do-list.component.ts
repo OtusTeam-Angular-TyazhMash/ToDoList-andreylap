@@ -11,14 +11,14 @@ export class ToDoListComponent {
   text: string = '';
   list = TASK;
 
-  del(id: number) {
+  deleteTodo(id: number) {
     this.list.splice(
       this.list.findIndex((i) => i.id == id),
       1
     );
   }
 
-  add() {
+  addTodo() {
     let max_id = Math.max(0, ...this.list.map((i) => i.id));
     this.list.push({ id: max_id + 1, task: this.text });
     this.text = '';
