@@ -20,7 +20,7 @@ export class ToDoListComponent {
   ];
   public text: string | undefined;
 
-  del(id: number) {}
+  deleteTodo(id: number) {}
 
-  add() {}
+  addTodo() {}
 }
