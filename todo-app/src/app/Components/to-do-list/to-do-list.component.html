@@ -1,4 +1,7 @@
-<div class="container">
+<div class="preloader" *ngIf="isLoading">
+  <img src="../assets/0012.gif" alt="" />
+</div>
+<div class="container" *ngIf="!isLoading">
   <h1>{{ title }}</h1>
   <ul class="list">
     <app-to-do-list-item
@@ -15,8 +18,11 @@
       placeholder="Add your new todo"
       [(ngModel)]="text"
     ></kendo-textbox>
-    <button class="btn btn-add" (click)="addTodo()" [disabled]="!text">
-      Add task
-    </button>
+    <app-buttoncomponent
+      [title]="'Add task'"
+      [primary]="false"
+      (click)="addTodo()"
+      [disabled]="!text"
+    />
   </div>
 </div>
