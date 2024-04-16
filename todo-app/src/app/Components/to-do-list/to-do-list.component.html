@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  <ul class="list">
+    <li class="list-item" *ngFor="let item of list">
+      <p>{{ item.task }}</p>
+      <button class="btn delete" (click)="deleteTodo(item.id)">Delete</button>
+    </li>
+  </ul>
+  <div class="footer-list">
+    <input type="text" placeholder="Add your new todo" [(ngModel)]="text" />
+    <button class="btn add" (click)="addTodo()" [disabled]="!text">
+      Add task
+    </button>
+  </div>
+</div>
