@@ -1,2 +1,7 @@
 <p>{{ list.task }}</p>
-<app-buttoncomponent [title]="'Delete'" [primary]="true" (click)="delete()" />
+<app-buttoncomponent
+  tooltip="delete"
+  [title]="'Delete'"
+  [primary]="true"
+  (click)="delete()"
+/>
