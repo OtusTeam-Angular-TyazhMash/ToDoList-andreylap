@@ -10,6 +10,8 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { SharedModule } from './shared/shared.module';
 import { TooltipComponent } from './Components/tooltip/tooltip.component';
 import { TooltipDirective } from './tooltip.directive';
+import { ToastComponent } from './Components/toast/toast.component';
+import { ToastService } from './services/toast.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { TooltipDirective } from './tooltip.directive';
     ToDoListItemComponent,
     TooltipComponent,
     TooltipDirective,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

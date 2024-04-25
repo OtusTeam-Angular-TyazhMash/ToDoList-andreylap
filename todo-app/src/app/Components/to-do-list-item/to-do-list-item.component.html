@@ -1,7 +1,17 @@
-<p>{{ list.task }}</p>
-<app-buttoncomponent
-  tooltip="delete"
-  [title]="'Delete'"
-  [primary]="true"
-  (click)="delete()"
-/>
+<ng-container *ngIf="data.editItemId != list.id">
+  <p>{{ list.task }}</p>
+  <app-buttoncomponent
+    tooltip="delete"
+    [title]="'Delete'"
+    [primary]="true"
+    (click)="delete()"
+  />
+</ng-container>
+<ng-container *ngIf="data.editItemId == list.id">
+  <input type="text" #input [value]="list.task" />
+  <app-buttoncomponent
+    tooltip="save"
+    [title]="'Save'"
+    (click)="save(input.value)"
+  />
+</ng-container>

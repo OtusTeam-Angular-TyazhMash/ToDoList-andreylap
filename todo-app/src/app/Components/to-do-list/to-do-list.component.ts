@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TASK, Task } from 'src/app/tasks/tasks';
+import { DataService, Task } from 'src/app/services/data.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-to-do-list',
@@ -10,11 +11,10 @@ export class ToDoListComponent implements OnInit {
   title = 'Todo List';
   text: string = '';
   textarea: string = '';
-  list = TASK;
   isLoading: boolean = true;
-  selectedItemId!: number | null;
-  desk: string | undefined;
 
+  desk: string | undefined;
+  constructor(public data: DataService, public toast: ToastService) {}
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
@@ -22,26 +22,31 @@ export class ToDoListComponent implements OnInit {
   }
 
   deleteTodo(id: number) {
-    this.list.splice(
-      this.list.findIndex((i) => i.id == id),
+    this.data.TASK.splice(
+      this.data.TASK.findIndex((i) => i.id == id),
       1
     );
   }
 
   addTodo() {
-    let max_id = Math.max(0, ...this.list.map((i) => i.id));
-    this.list.push({
+    let max_id = Math.max(0, ...this.data.TASK.map((i) => i.id));
+    this.data.TASK.push({
       id: max_id + 1,
       task: this.text,
       description: this.textarea,
     });
+
+    this.toast.show(`Задача ${this.text} успешно добавлена`, 'access');
     this.text = '';
     this.textarea = '';
   }
   isSelected(data: Task) {
-    this.selectedItemId = data.id;
-    if (this.selectedItemId != null) {
+    this.data.selectedItemId = data.id;
+    if (this.data.selectedItemId != null) {
       this.desk = data.description;
     }
+  }
+  isShow(data: Task) {
+    this.data.editItemId = data.id;
   }
 }
