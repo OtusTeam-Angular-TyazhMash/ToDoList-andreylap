@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TASK, Task } from 'src/app/tasks/tasks';
+import { Task } from 'src/app/tasks/tasks';
 
 @Component({
   selector: 'app-to-do-list-item',
