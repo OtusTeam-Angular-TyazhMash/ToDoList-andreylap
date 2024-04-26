@@ -1,22 +1,37 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-  <ul class="list">
-    <app-to-do-list-item
-      class="list-item"
-      *ngFor="let item of list"
-      [list]="item"
-      (isDelete)="deleteTodo(item.id)"
-    >
-    </app-to-do-list-item>
-  </ul>
-  <div class="footer-list">
-    <kendo-textbox
-      type="text"
-      placeholder="Add your new todo"
-      [(ngModel)]="text"
-    ></kendo-textbox>
-    <button class="btn btn-add" (click)="addTodo()" [disabled]="!text">
-      Add task
-    </button>
+<div class="preloader" *ngIf="isLoading">
+  <img src="../assets/0012.gif" alt="" />
+</div>
+<div style="display: flex; gap: 50px">
+  <div class="container" *ngIf="!isLoading">
+    <h1>{{ title }}</h1>
+    <ul class="list">
+      <app-to-do-list-item
+        *ngFor="let item of data.TASK"
+        tooltip="{{ item.description }}"
+        class="list-item"
+        [class.selected]="item.id == data.selectedItemId"
+        [list]="item"
+        (isDelete)="deleteTodo(item.id)"
+        (click)="isSelected(item)"
+        (dblclick)="isShow(item)"
+      >
+      </app-to-do-list-item>
+    </ul>
+    <div class="footer-list">
+      <kendo-textbox
+        type="text"
+        placeholder="Add your new todo"
+        [(ngModel)]="text"
+      ></kendo-textbox>
+      <app-button-component
+        tooltip="add"
+        [title]="'Add task'"
+        [primary]="false"
+        (click)="addTodo()"
+        [disabled]="!text"
+      />
+    </div>
+    <textarea name="name" cols="30" rows="10" [(ngModel)]="textarea"></textarea>
   </div>
+  <div class="desk" *ngIf="!isLoading">{{ desk }}</div>
 </div>
