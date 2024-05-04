@@ -7,7 +7,7 @@ import { ToDoListComponent } from './Components/to-do-list/to-do-list.component'
 import { ToDoListItemComponent } from './Components/to-do-list-item/to-do-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, ToDoListComponent, ToDoListItemComponent],
@@ -17,6 +17,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
     FormsModule,
     BrowserAnimationsModule,
     InputsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

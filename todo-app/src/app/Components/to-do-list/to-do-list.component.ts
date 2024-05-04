@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TASK, Task } from 'src/app/tasks/tasks';
 
 @Component({
@@ -6,10 +6,17 @@ import { TASK, Task } from 'src/app/tasks/tasks';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.scss'],
 })
-export class ToDoListComponent {
+export class ToDoListComponent implements OnInit {
   title = 'Todo List';
   text: string = '';
   list = TASK;
+  isLoading: boolean = true;
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
+  }
 
   deleteTodo(id: number) {
     this.list.splice(
