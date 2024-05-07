@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DataService, Task } from 'src/app/services/data.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { Component, Input } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -8,17 +8,20 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./to-do-list-item.component.scss'],
 })
 export class ToDoListItemComponent {
-  @Input() list!: Task;
-  @Output() isDelete = new EventEmitter<number>();
-  @Output() isSave = new EventEmitter<string>();
-  constructor(public data: DataService, public toast: ToastService) {}
-  delete() {
-    this.isDelete.emit();
-  }
-  save(str: string) {
-    this.list.task = str;
-    this.toast.message.edit = true;
-    this.toast.show(`Задача успешно изменена`, 'edit');
-    this.data.editItemId = null;
+  @Input() task!: any;
+
+  constructor(
+    public data: DataService,
+    private readonly taskService: TasksService
+  ) {}
+  status(event: any) {
+    let isChecked = event.target.checked;
+    if (isChecked == true) {
+      this.task.status = 'Completed';
+      this.taskService.updateTask(this.task).subscribe();
+    } else {
+      this.task.status = 'InProgress';
+      this.taskService.updateTask(this.task).subscribe();
+    }
   }
 }

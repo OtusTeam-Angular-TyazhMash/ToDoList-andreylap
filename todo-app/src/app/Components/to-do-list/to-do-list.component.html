@@ -1,37 +1,64 @@
-<div class="preloader" *ngIf="isLoading">
-  <img src="../assets/0012.gif" alt="" />
-</div>
+<app-spinner />
 <div style="display: flex; gap: 50px">
-  <div class="container" *ngIf="!isLoading">
+  <div class="container" *ngIf="!data.isLoading">
     <h1>{{ title }}</h1>
+    <kendo-buttongroup width="100%" selection="single">
+      <button
+        kendoButton
+        [toggleable]="true"
+        [selected]="true"
+        (click)="filter('All')"
+      >
+        All
+      </button>
+      <button kendoButton [toggleable]="true" (click)="filter('InProgress')">
+        InProgress
+      </button>
+      <button kendoButton [toggleable]="true" (click)="filter('Completed')">
+        Completed
+      </button>
+    </kendo-buttongroup>
     <ul class="list">
       <app-to-do-list-item
-        *ngFor="let item of data.TASK"
+        *ngFor="let item of data.tasks"
         tooltip="{{ item.description }}"
         class="list-item"
         [class.selected]="item.id == data.selectedItemId"
-        [list]="item"
-        (isDelete)="deleteTodo(item.id)"
+        [task]="item"
         (click)="isSelected(item)"
-        (dblclick)="isShow(item)"
+        (dblclick)="isShow(item.id)"
       >
+        <app-button-component
+          *ngIf="item.id != data.editItemId"
+          tooltip="delete"
+          [title]="'Delete'"
+          [primary]="true"
+          (click)="deleteTodo(item.id)"
+        />
+        <app-button-component
+          *ngIf="item.id == data.editItemId"
+          tooltip="save"
+          [title]="'Save'"
+          (click)="save(item)"
+        />
       </app-to-do-list-item>
     </ul>
     <div class="footer-list">
-      <kendo-textbox
+      <!-- <kendo-textbox
         type="text"
         placeholder="Add your new todo"
         [(ngModel)]="text"
-      ></kendo-textbox>
+      ></kendo-textbox> -->
       <app-button-component
         tooltip="add"
         [title]="'Add task'"
         [primary]="false"
-        (click)="addTodo()"
-        [disabled]="!text"
+        (click)="addTodo(data.isShowForm)"
+        style="width: 100%"
       />
     </div>
-    <textarea name="name" cols="30" rows="10" [(ngModel)]="textarea"></textarea>
+    <!-- <textarea name="name" cols="30" rows="10" [(ngModel)]="textarea"></textarea> -->
   </div>
-  <div class="desk" *ngIf="!isLoading">{{ desk }}</div>
+  <div class="desk" *ngIf="!data.isLoading">{{ desk }}</div>
 </div>
+<app-todo-create-item />

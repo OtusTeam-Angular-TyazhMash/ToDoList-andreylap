@@ -1,0 +1,27 @@
+<div *ngIf="data.isShowForm" style="margin-top: 20px; padding: 25px">
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        gap: 15px;
+        padding-bottom: 15px;
+      "
+    >
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="task.name"
+        placeholder="Add your new todo"
+      />
+      <input
+        type="text"
+        name="description"
+        [(ngModel)]="task.description"
+        placeholder="Add description"
+      />
+    </div>
+    <button type="submit">Ok</button>
+  </form>
+</div>

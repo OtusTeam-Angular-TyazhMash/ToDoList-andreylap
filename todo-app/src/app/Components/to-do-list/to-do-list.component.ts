@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { DataService, Task } from 'src/app/services/data.service';
+import { TasksService } from 'src/app/services/tasks.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -11,42 +13,57 @@ export class ToDoListComponent implements OnInit {
   title = 'Todo List';
   text: string = '';
   textarea: string = '';
-  isLoading: boolean = true;
-
   desk: string | undefined;
-  constructor(public data: DataService, public toast: ToastService) {}
+
+  constructor(
+    public data: DataService,
+    public toast: ToastService,
+    public taskService: TasksService
+  ) {}
+
   ngOnInit(): void {
     setTimeout(() => {
-      this.isLoading = false;
+      this.data.isLoading = false;
     }, 500);
+    this.taskService.getTasks().subscribe((data) => (this.data.tasks = data));
   }
 
-  deleteTodo(id: number) {
-    this.data.TASK.splice(
-      this.data.TASK.findIndex((i) => i.id == id),
-      1
-    );
-  }
-
-  addTodo() {
-    let max_id = Math.max(0, ...this.data.TASK.map((i) => i.id));
-    this.data.TASK.push({
-      id: max_id + 1,
-      task: this.text,
-      description: this.textarea,
+  deleteTodo(id: string) {
+    this.taskService.deleteTaskById(id).subscribe(() => {
+      this.taskService.getTasks().subscribe((data) => (this.data.tasks = data));
     });
-
-    this.toast.show(`Задача ${this.text} успешно добавлена`, 'access');
-    this.text = '';
-    this.textarea = '';
   }
-  isSelected(data: Task) {
+
+  addTodo(show: boolean) {
+    this.data.isShowForm = !show;
+  }
+  isSelected(data: any) {
     this.data.selectedItemId = data.id;
     if (this.data.selectedItemId != null) {
       this.desk = data.description;
     }
   }
-  isShow(data: Task) {
-    this.data.editItemId = data.id;
+  isShow(id: number) {
+    this.data.editItemId = id;
+  }
+  save(task: Task) {
+    this.toast.message.edit = true;
+    this.toast.show(`Задача успешно изменена`, 'edit');
+    this.data.editItemId = null;
+
+    this.taskService.updateTask(task).subscribe(() => {
+      this.taskService.getTasks().subscribe((data) => (this.data.tasks = data));
+    });
+  }
+
+  filter(status: string) {
+    this.taskService
+      .getTasks()
+      .pipe(
+        map((el) =>
+          status != 'All' ? el.filter((i) => i.status == status) : el
+        )
+      )
+      .subscribe((data) => (this.data.tasks = data));
   }
 }

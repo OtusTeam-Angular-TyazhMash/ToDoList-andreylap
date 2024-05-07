@@ -1,17 +1,18 @@
-<ng-container *ngIf="data.editItemId != list.id">
-  <p>{{ list.task }}</p>
-  <app-button-component
-    tooltip="delete"
-    [title]="'Delete'"
-    [primary]="true"
-    (click)="delete()"
+<ng-container *ngIf="data.editItemId != task.id">
+  <input
+    type="checkbox"
+    [checked]="task.status == 'Completed'"
+    (change)="status($event)"
   />
+  <p>{{ task.name }}</p>
+  <ng-content select="app-button-component"></ng-content>
 </ng-container>
-<ng-container *ngIf="data.editItemId == list.id">
-  <input type="text" #input [value]="list.task" />
-  <app-button-component
-    tooltip="save"
-    [title]="'Save'"
-    (click)="save(input.value)"
+<ng-container>
+  <input
+    type="text"
+    #input
+    [(ngModel)]="task.name"
+    *ngIf="data.editItemId == task.id"
   />
+  <ng-content select="app-button-component"></ng-content>
 </ng-container>

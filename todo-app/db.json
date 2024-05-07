@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": "bd3d",
+      "name": "Buy a new gaming laptop",
+      "description": "1",
+      "status": "InProgress"
+    },
+    {
+      "id": "1b2c",
+      "name": "Complete previous task",
+      "description": "2",
+      "status": "Completed"
+    },
+    {
+      "id": "4871",
+      "name": "Create some angular app",
+      "description": "3",
+      "status": "InProgress"
+    }
+  ]
+}

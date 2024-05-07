@@ -11,7 +11,10 @@ import { SharedModule } from './shared/shared.module';
 import { TooltipComponent } from './Components/tooltip/tooltip.component';
 import { TooltipDirective } from './tooltip.directive';
 import { ToastComponent } from './Components/toast/toast.component';
-import { ToastService } from './services/toast.service';
+import { TodoCreateItemComponent } from './Components/todo-create-item/todo-create-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { ToastService } from './services/toast.service';
     TooltipComponent,
     TooltipDirective,
     ToastComponent,
+    TodoCreateItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,8 @@ import { ToastService } from './services/toast.service';
     BrowserAnimationsModule,
     InputsModule,
     SharedModule,
+    HttpClientModule,
+    ButtonsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
