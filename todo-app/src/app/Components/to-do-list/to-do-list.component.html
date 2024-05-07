@@ -44,11 +44,6 @@
       </app-to-do-list-item>
     </ul>
     <div class="footer-list">
-      <!-- <kendo-textbox
-        type="text"
-        placeholder="Add your new todo"
-        [(ngModel)]="text"
-      ></kendo-textbox> -->
       <app-button-component
         tooltip="add"
         [title]="'Add task'"
@@ -57,7 +52,6 @@
         style="width: 100%"
       />
     </div>
-    <!-- <textarea name="name" cols="30" rows="10" [(ngModel)]="textarea"></textarea> -->
   </div>
   <div class="desk" *ngIf="!data.isLoading">{{ desk }}</div>
 </div>
