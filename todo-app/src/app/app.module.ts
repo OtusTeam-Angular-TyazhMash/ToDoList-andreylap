@@ -14,6 +14,7 @@ import { ToastComponent } from './Components/toast/toast.component';
 import { TodoCreateItemComponent } from './Components/todo-create-item/todo-create-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { ToDoItemViewComponent } from './Components/to-do-item-view/to-do-item-view.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     TooltipDirective,
     ToastComponent,
     TodoCreateItemComponent,
+    ToDoItemViewComponent,
   ],
   imports: [
     BrowserModule,

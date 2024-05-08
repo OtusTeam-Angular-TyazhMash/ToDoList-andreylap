@@ -23,9 +23,9 @@
         *ngFor="let item of data.tasks"
         tooltip="{{ item.description }}"
         class="list-item"
-        [class.selected]="item.id == data.selectedItemId"
+        [class.selected]="item.id == id"
         [task]="item"
-        (click)="isSelected(item)"
+        [routerLink]="item.id"
         (dblclick)="isShow(item.id)"
       >
         <app-button-component
@@ -53,6 +53,7 @@
       />
     </div>
   </div>
-  <div class="desk" *ngIf="!data.isLoading">{{ desk }}</div>
+
+  <router-outlet></router-outlet>
 </div>
 <app-todo-create-item />

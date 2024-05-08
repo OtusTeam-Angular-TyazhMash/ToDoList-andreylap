@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { DataService, Task } from 'src/app/services/data.service';
 import { TasksService } from 'src/app/services/tasks.service';
@@ -13,18 +14,26 @@ export class ToDoListComponent implements OnInit {
   title = 'Todo List';
   text: string = '';
   textarea: string = '';
-  desk: string | undefined;
+
+  taskId: string = '';
 
   constructor(
     public data: DataService,
     public toast: ToastService,
-    public taskService: TasksService
+    public taskService: TasksService,
+    public route: ActivatedRoute
   ) {}
+
+  public get id() {
+    if (this.route.snapshot.children.length == 0) return '-1';
+    return this.route.snapshot.children[0].params['id'];
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.data.isLoading = false;
     }, 500);
+
     this.taskService.getTasks().subscribe((data) => (this.data.tasks = data));
   }
 
@@ -37,12 +46,12 @@ export class ToDoListComponent implements OnInit {
   addTodo(show: boolean) {
     this.data.isShowForm = !show;
   }
-  isSelected(data: any) {
-    this.data.selectedItemId = data.id;
-    if (this.data.selectedItemId != null) {
-      this.desk = data.description;
-    }
-  }
+  // isSelected(data: any) {
+  //   this.data.selectedItemId = data.id;
+  //   if (this.data.selectedItemId != null) {
+  //     this.desk = data.description;
+  //   }
+  // }
   isShow(id: number) {
     this.data.editItemId = id;
   }
