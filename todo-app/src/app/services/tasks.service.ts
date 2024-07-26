@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TasksService {
-  private url = 'http://localhost:8000/tasks';
+  private url = 'http://localhost:5000/tasks';
 
   constructor(private httpClient: HttpClient) {}
 
-  createTask(name: string, description: string) {
-    return this.httpClient.post(this.url, { name, description });
+  createTask(name: string, description: string, status = 'InProgress') {
+    return this.httpClient.post(this.url, { name, description, status });
   }
   updateTask(task: any) {
     return this.httpClient.put(`${this.url}/${task.id}`, task);

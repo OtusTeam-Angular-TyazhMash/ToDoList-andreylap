@@ -1,10 +1,16 @@
-<div *ngIf="data.isShowForm" style="margin-top: 20px; padding: 25px">
-  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <kendo-dialog
+    title="Please confirm"
+    *ngIf="data.isShowForm"
+    (close)="close()"
+    [minWidth]="250"
+    [width]="450"
+  >
     <div
       style="
         display: flex;
         flex-direction: column;
-        width: 20%;
+        width: 100%;
         gap: 15px;
         padding-bottom: 15px;
       "
@@ -22,6 +28,9 @@
         placeholder="Add description"
       />
     </div>
-    <button type="submit">Ok</button>
-  </form>
-</div>
+
+    <kendo-dialog-actions>
+      <button kendoButton type="submit">Ok</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</form>

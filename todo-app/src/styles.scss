@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./variables.scss";
 h1, ul, li{
     margin: 0;
     padding: 0;
@@ -7,3 +8,9 @@ h1, ul, li{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body>div {
+    visibility: hidden;
+}
+div[kendowatermarkoverlay] {
+    background-image: none !important;
+}

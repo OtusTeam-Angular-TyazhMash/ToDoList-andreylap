@@ -13,8 +13,8 @@
     opacity: 0.5;
 }
 .btn-primary {
-    background-color: rgb(238, 79, 79);
+    background-color: var(--danger-color);
   }
 .btn-secondary {
-    background-color:  rgb(55, 175, 73);
+    background-color: var(--success-color);
 }

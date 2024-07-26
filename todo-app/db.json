@@ -4,18 +4,30 @@
       "id": "bd3d",
       "name": "Buy a new gaming laptop",
       "description": "1",
-      "status": "InProgress"
+      "status": "Completed"
     },
     {
       "id": "1b2c",
       "name": "Complete previous task",
       "description": "2",
-      "status": "Completed"
+      "status": "InProgress"
     },
     {
       "id": "4871",
       "name": "Create some angular app",
       "description": "3",
+      "status": "Completed"
+    },
+    {
+      "id": "aaa5",
+      "name": "iPhone 11",
+      "description": "4343",
+      "status": "InProgress"
+    },
+    {
+      "id": "be3d",
+      "name": "iPhone 12s",
+      "description": "324",
       "status": "InProgress"
     }
   ]

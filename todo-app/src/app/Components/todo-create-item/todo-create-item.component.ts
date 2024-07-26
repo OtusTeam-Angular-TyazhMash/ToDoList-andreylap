@@ -20,6 +20,9 @@ export class TodoCreateItemComponent {
     public data: DataService,
     public toast: ToastService
   ) {}
+  close() {
+    this.data.isShowForm = false;
+  }
 
   onSubmit(form: NgForm) {
     if (form.valid) {

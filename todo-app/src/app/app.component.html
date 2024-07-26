@@ -1,2 +1,26 @@
-<router-outlet></router-outlet>
-<app-toast />
+<div class="side-nav">
+  <h1 class="header">TasksBoard</h1>
+  <div class="navigation">
+    <kendo-buttongroup
+      width="100%"
+      selection="single"
+      style="flex-direction: column; gap: 5px"
+    >
+      <button
+        kendoButton
+        [toggleable]="true"
+        [selected]="true"
+        [routerLink]="'/backlog'"
+      >
+        Backlog
+      </button>
+      <button kendoButton [toggleable]="true" [routerLink]="'/board'">
+        Board
+      </button>
+    </kendo-buttongroup>
+  </div>
+</div>
+<div class="content">
+  <router-outlet></router-outlet>
+  <app-toast />
+</div>

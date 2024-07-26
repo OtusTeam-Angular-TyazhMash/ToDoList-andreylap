@@ -18,7 +18,6 @@ export class ToDoItemViewComponent {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.taskId = params['id'];
-      console.log(this.taskId);
       this.desk = this.data.tasks.find((i) => i.id == this.taskId).description;
     });
   }

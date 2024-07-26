@@ -1,7 +1,6 @@
 <app-spinner />
-<div style="display: flex; gap: 50px">
+<div style="display: flex; gap: 10px; height: 99vh">
   <div class="container" *ngIf="!data.isLoading">
-    <h1>{{ title }}</h1>
     <kendo-buttongroup width="100%" selection="single">
       <button
         kendoButton
@@ -43,6 +42,7 @@
         />
       </app-to-do-list-item>
     </ul>
+    <!-- <app-to-do-item-view /> -->
     <div class="footer-list">
       <app-button-component
         tooltip="add"
@@ -52,8 +52,9 @@
         style="width: 100%"
       />
     </div>
+    <app-todo-create-item />
   </div>
-
-  <router-outlet></router-outlet>
+  <div style="width: 77%">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<app-todo-create-item />

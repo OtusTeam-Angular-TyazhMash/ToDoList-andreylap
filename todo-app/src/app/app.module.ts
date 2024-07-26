@@ -15,6 +15,9 @@ import { TodoCreateItemComponent } from './Components/todo-create-item/todo-crea
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ToDoItemViewComponent } from './Components/to-do-item-view/to-do-item-view.component';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { BoardComponent } from './Components/board/board.component';
+
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { ToDoItemViewComponent } from './Components/to-do-item-view/to-do-item-v
     ToastComponent,
     TodoCreateItemComponent,
     ToDoItemViewComponent,
+    BoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +41,7 @@ import { ToDoItemViewComponent } from './Components/to-do-item-view/to-do-item-v
     SharedModule,
     HttpClientModule,
     ButtonsModule,
+    DialogsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
