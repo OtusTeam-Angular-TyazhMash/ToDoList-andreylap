@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Task } from './data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class TasksService {
   createTask(name: string, description: string, status = 'InProgress') {
     return this.httpClient.post(this.url, { name, description, status });
   }
-  updateTask(task: any) {
+  updateTask(task: Task) {
     return this.httpClient.put(`${this.url}/${task.id}`, task);
   }
   deleteTaskById(id: string) {

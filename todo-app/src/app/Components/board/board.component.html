@@ -1,14 +1,20 @@
-<div class="board-column">
+<div class="board-column" *ngIf="allToDoListItems$ | async as allToDoListItems">
   <div class="header">All ({{ allToDoListItems.length }})</div>
   <div *ngFor="let item of allToDoListItems">{{ item.name }}</div>
 </div>
-<div class="board-column">
+<div
+  class="board-column"
+  *ngIf="inProgressToDoListItems$ | async as inProgressToDoListItems"
+>
   <div class="header">In Progress ({{ inProgressToDoListItems.length }})</div>
   <div *ngFor="let item of inProgressToDoListItems" class="warning">
     {{ item.name }}
   </div>
 </div>
-<div class="board-column">
+<div
+  class="board-column"
+  *ngIf="completedToDoListItems$ | async as completedToDoListItems"
+>
   <div class="header">Completed ({{ completedToDoListItems.length }})</div>
   <div *ngFor="let item of completedToDoListItems" class="success">
     {{ item.name }}

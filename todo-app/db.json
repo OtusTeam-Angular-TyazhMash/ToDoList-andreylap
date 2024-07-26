@@ -19,16 +19,10 @@
       "status": "Completed"
     },
     {
-      "id": "aaa5",
-      "name": "iPhone 11",
-      "description": "4343",
-      "status": "InProgress"
-    },
-    {
-      "id": "be3d",
+      "id": "f640",
       "name": "iPhone 12s",
-      "description": "324",
-      "status": "InProgress"
+      "description": "12",
+      "status": "Completed"
     }
   ]
 }

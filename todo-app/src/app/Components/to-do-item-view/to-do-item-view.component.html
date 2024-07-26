@@ -1,1 +1,3 @@
-<div class="desk">{{ desk }}</div>
+<div *ngIf="deskItems$ | async as desk" class="desk">
+  {{ desk.description }}
+</div>

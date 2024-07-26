@@ -17,9 +17,9 @@
         Completed
       </button>
     </kendo-buttongroup>
-    <ul class="list">
+    <ul class="list" *ngIf="toDoListItems$ | async as tasks">
       <app-to-do-list-item
-        *ngFor="let item of data.tasks"
+        *ngFor="let item of tasks"
         tooltip="{{ item.description }}"
         class="list-item"
         [class.selected]="item.id == id"

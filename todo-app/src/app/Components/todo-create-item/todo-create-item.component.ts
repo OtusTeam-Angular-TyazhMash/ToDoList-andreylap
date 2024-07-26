@@ -26,13 +26,15 @@ export class TodoCreateItemComponent {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.taskService
-        .createTask(form.value.name, form.value.description)
-        .subscribe(() => {
-          this.taskService
-            .getTasks()
-            .subscribe((data) => (this.data.tasks = data));
-        });
+      this.data.addItem(form);
+      this.data.update();
+      // this.taskService
+      //   .createTask(form.value.name, form.value.description)
+      //   .subscribe(() => {
+      //     this.taskService
+      //       .getTasks()
+      //       .subscribe((data) => (this.data.tasks = data));
+      //   });
     }
     this.data.isShowForm = false;
     this.toast.show(`Задача успешно добавлена`, 'access');

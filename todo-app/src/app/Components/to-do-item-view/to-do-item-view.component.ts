@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { map, Observable } from 'rxjs';
+import { DataService, Task } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-to-do-item-view',
@@ -10,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 export class ToDoItemViewComponent {
   desk: string | undefined;
   taskId: string = '';
+  deskItems$!: Observable<any>;
   constructor(
     public data: DataService,
     private route: ActivatedRoute,
@@ -18,7 +20,14 @@ export class ToDoItemViewComponent {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.taskId = params['id'];
-      this.desk = this.data.tasks.find((i) => i.id == this.taskId).description;
+      this.deskItems$ = this.data.getItems.pipe(
+        map((items) => items.find((i) => i.id == this.taskId))
+      );
+
+      // this.inProgressToDoListItems$ = this.dataService.getItems.pipe(
+      //   map((items) => items.filter((item) => item.status === 'InProgress'))
+      this.data.update();
+      // this.desk = this.data.tasks.find((i) => i.id == this.taskId).description;
     });
   }
 }

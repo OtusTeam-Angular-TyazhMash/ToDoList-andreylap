@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Task } from 'src/app/services/data.service';
-import { TasksService } from 'src/app/services/tasks.service';
+import { map, Observable } from 'rxjs';
+import { DataService, Task } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-board',
@@ -8,21 +8,20 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent {
-  allToDoListItems: Task[] = [];
-  inProgressToDoListItems: Task[] = [];
-  completedToDoListItems: Task[] = [];
+  allToDoListItems$!: Observable<Array<Task>>;
+  inProgressToDoListItems$!: Observable<Array<Task>>;
+  completedToDoListItems$!: Observable<Array<Task>>;
 
-  constructor(public taskService: TasksService) {}
+  constructor(public dataService: DataService) {}
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((toDoListItems) => {
-      this.allToDoListItems = toDoListItems;
-      this.inProgressToDoListItems = toDoListItems.filter(
-        (item) => item.status === 'InProgress'
-      );
-      this.completedToDoListItems = toDoListItems.filter(
-        (item) => item.status === 'Completed'
-      );
-    });
+    this.allToDoListItems$ = this.dataService.getItems;
+    this.inProgressToDoListItems$ = this.dataService.getItems.pipe(
+      map((items) => items.filter((item) => item.status === 'InProgress'))
+    );
+    this.completedToDoListItems$ = this.dataService.getItems.pipe(
+      map((items) => items.filter((item) => item.status === 'Completed'))
+    );
+    this.dataService.update();
   }
 }
