@@ -5,6 +5,7 @@
     (close)="close()"
     [minWidth]="250"
     [width]="450"
+    i18n-title="@@form_name"
   >
     <div
       style="
@@ -20,17 +21,19 @@
         name="name"
         [(ngModel)]="task.name"
         placeholder="Add your new todo"
+        i18n-placeholder="@@Add_your_new_todo"
       />
       <input
         type="text"
         name="description"
         [(ngModel)]="task.description"
         placeholder="Add description"
+        i18n-placeholder="@@Add description"
       />
     </div>
 
     <kendo-dialog-actions>
-      <button kendoButton type="submit">Ok</button>
+      <button kendoButton type="submit" i18n="@@ok">Ok</button>
     </kendo-dialog-actions>
   </kendo-dialog>
 </form>

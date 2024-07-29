@@ -1,5 +1,5 @@
 <app-spinner />
-<div style="display: flex; gap: 10px; height: 99vh">
+<div style="display: flex; gap: 10px; height: 96vh">
   <div class="container" *ngIf="!data.isLoading">
     <kendo-buttongroup width="100%" selection="single">
       <button
@@ -7,13 +7,24 @@
         [toggleable]="true"
         [selected]="true"
         (click)="filter('All')"
+        i18n="@@all"
       >
         All
       </button>
-      <button kendoButton [toggleable]="true" (click)="filter('InProgress')">
+      <button
+        kendoButton
+        [toggleable]="true"
+        (click)="filter('InProgress')"
+        i18n="@@in_progress"
+      >
         InProgress
       </button>
-      <button kendoButton [toggleable]="true" (click)="filter('Completed')">
+      <button
+        kendoButton
+        [toggleable]="true"
+        (click)="filter('Completed')"
+        i18n="@@comoleted"
+      >
         Completed
       </button>
     </kendo-buttongroup>
@@ -30,15 +41,19 @@
         <app-button-component
           *ngIf="item.id != data.editItemId"
           tooltip="delete"
-          [title]="'Delete'"
+          title="Delete"
           [primary]="true"
           (click)="deleteTodo(item.id)"
+          i18n-title="@@Btn_delete"
+          i18n-tooltip="@@Btn_delete_tooltip"
         />
         <app-button-component
           *ngIf="item.id == data.editItemId"
           tooltip="save"
-          [title]="'Save'"
+          title="Save"
           (click)="save(item)"
+          i18n-title="@@Btn_save"
+          i18n-tooltip="@@Btn_save_tooltip"
         />
       </app-to-do-list-item>
     </ul>
@@ -46,10 +61,12 @@
     <div class="footer-list">
       <app-button-component
         tooltip="add"
-        [title]="'Add task'"
+        title="Add task"
         [primary]="false"
         (click)="addTodo(data.isShowForm)"
         style="width: 100%"
+        i18n-title="@@addTaskTitle"
+        i18n-tooltip="@@Btn_add_tooltip"
       />
     </div>
     <app-todo-create-item />

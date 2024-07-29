@@ -16,7 +16,11 @@
     margin: var(--large-margin) 0;
     font-weight: 500;
 }
-
+.header_div{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
 .navigation {
     display: flex;
     flex: 1;

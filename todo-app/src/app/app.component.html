@@ -1,5 +1,6 @@
 <div class="side-nav">
-  <h1 class="header">TasksBoard</h1>
+  <h1 class="header" i18n="@@TasksBoard">TasksBoard</h1>
+
   <div class="navigation">
     <kendo-buttongroup
       width="100%"
@@ -11,16 +12,26 @@
         [toggleable]="true"
         [selected]="true"
         [routerLink]="'/backlog'"
+        i18n="@@Backlog"
       >
         Backlog
       </button>
-      <button kendoButton [toggleable]="true" [routerLink]="'/board'">
+      <button
+        kendoButton
+        [toggleable]="true"
+        [routerLink]="'/board'"
+        i18n="@@Board"
+      >
         Board
       </button>
     </kendo-buttongroup>
   </div>
 </div>
 <div class="content">
+  <div class="header_div">
+    <button (click)="switchLanguage('en')">English</button>
+    <button (click)="switchLanguage('ru')">Русский</button>
+  </div>
   <router-outlet></router-outlet>
   <app-toast />
 </div>
